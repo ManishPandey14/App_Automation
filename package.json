@@ -1,0 +1,88 @@
+{
+  "name": "distribution-ui-automation",
+  "version": "0.0.1",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "private": true,
+  "scripts": {
+    "ci": "node ./scripts/bin/ci.js run",
+    "ci:dev": "node ./scripts/bin/ci.js run --no-tests",
+    "ci:ios": "node ./scripts/bin/ci.js run --platform=ios",
+    "ci:android": "node ./scripts/bin/ci.js run --platform=android",
+    "ci:clean": "node ./scripts/bin/ci.js clean",
+    "cleanup": "npm run ci:clean",
+    "ios": "wdio ./config/mobile.ios.config.js",
+    "android": "wdio ./config/mobile.android.config.js",
+    "emulator": "node ./scripts/bin/emulator.js",
+    "simulator": "node ./scripts/bin/simulator.js",
+    "pkg": "node ./scripts/bin/extract.js both",
+    "pkg:ios": "node ./scripts/bin/extract.js ios",
+    "pkg:android": "node ./scripts/bin/extract.js android",
+    "path:emulator": "./scripts/bin/doctor/emulator.sh",
+    "path:sdkmanager": "./scripts/bin/doctor/sdkmanager.sh",
+    "path:avdmanager": "./scripts/bin/doctor/avdmanager.sh",
+    "lint": "eslint config tests scripts",
+    "prettier": "prettier --write",
+    "web:emp": "wdio ./config/web.emp.chrome.conf.js",
+    "web:admin": "wdio ./config/web.admin.chrome.conf.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run lint"
+    ],
+    "*.+(js|jsx)": [
+      "npm run prettier",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@wdio/appium-service": "^5.10.8",
+    "@wdio/cli": "^5.10.9",
+    "@wdio/jasmine-framework": "^5.10.8",
+    "@wdio/local-runner": "^5.10.9",
+    "@wdio/sauce-service": "^5.10.8",
+    "@wdio/selenium-standalone-service": "^5.9.3",
+    "@wdio/spec-reporter": "^5.9.3",
+    "@wdio/sync": "^5.10.8",
+    "appium": "^1.13.0",
+    "heapdump": "^0.3.14",
+    "node-cmd": "^3.0.0",
+    "selenium-standalone": "^6.16.0",
+    "wdio-docker-service": "^2.1.1",
+    "webdriverio": "^5.10.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
+    "@babel/traverse": "^7.4.5",
+    "@babel/types": "^7.4.4",
+    "babel-eslint": "^10.0.2",
+    "babel-plugin-import": "^1.12.0",
+    "chalk": "^2.4.2",
+    "eslint": "^6.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "eslint-plugin-wdio": "^5.7.8",
+    "find-up": "^4.1.0",
+    "husky": "^2.7.0",
+    "lint-staged": "^8.2.1",
+    "prettier": "^1.18.2",
+    "prettier-eslint": "^9.0.0",
+    "ramda": "^0.26.1",
+    "readline-sync": "^1.4.9",
+    "shortid": "^2.2.14",
+    "ttab": "^0.6.1",
+    "yargs": "^13.2.4"
+  }
+}
